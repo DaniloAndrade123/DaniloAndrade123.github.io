@@ -1,0 +1,59 @@
+/* Estilos Personalizados de la Atmósfera Supernatural */
+body {
+    background-color: #07080a;
+    color: #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Texturas y Efectos */
+.journal-bg {
+    background-color: #12141a;
+    background-image: radial-gradient(#1f2430 1px, transparent 0);
+    background-size: 24px 24px;
+}
+
+.hero-overlay {
+    background: linear-gradient(to bottom, rgba(7, 8, 10, 0.4) 0%, rgba(7, 8, 10, 0.8) 70%, rgba(7, 8, 10, 1) 100%),
+                radial-gradient(circle at center, transparent 20%, rgba(7, 8, 10, 0.9) 100%);
+}
+
+.gold-glow {
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.5), 0 0 20px rgba(197, 160, 89, 0.3);
+}
+
+.red-glow {
+    text-shadow: 0 0 10px rgba(168, 13, 13, 0.7), 0 0 20px rgba(139, 0, 0, 0.5);
+}
+
+.border-gold-glow {
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+}
+
+/* Animación Pentagrama Anti-Posesión */
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 40s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #07080a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8b0000;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c5a059;
+}

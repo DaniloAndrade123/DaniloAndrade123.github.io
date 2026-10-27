@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUPERNATURAL - Saving People, Hunting Things</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        spn: {
+                            black: '#07080a',
+                            dark: '#0f1115',
+                            card: '#161920',
+                            red: '#8b0000',
+                            blood: '#a80d0d',
+                            gold: '#c5a059',
+                            silver: '#a0a5b5',
+                            light: '#e0e0e0'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        journal: ['Special Elite', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;800&family=Special+Elite&display=swap" rel="stylesheet">
+
+    <!-- Hoja de Estilos Personalizada -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-spn-black text-spn-light selection:bg-spn-red selection:text-white">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-spn-black/90 backdrop-blur-md border-b border-spn-red/30 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center space-x-3 group">
+                    <svg class="w-10 h-10 text-spn-gold group-hover:text-spn-red transition-colors duration-300 fill-current" viewBox="0 0 100 100">
+                        <path d="M50,5 L63,38 L98,38 L70,59 L81,95 L50,73 L19,95 L30,59 L2,38 L37,38 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 4"/>
+                        <circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="font-cinzel text-xl md:text-2xl font-bold tracking-widest text-spn-gold group-hover:text-white transition-colors">
+                        SUPERNATURAL
+                    </span>
+                </a>
+
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center space-x-6 font-cinzel text-sm uppercase tracking-wider">
+                    <a href="#inicio" class="text-spn-light hover:text-spn-gold transition-colors py-2">Inicio</a>
+                    <a href="#sinopsis" class="text-spn-light hover:text-spn-gold transition-colors py-2">Sinopsis</a>
+                    <a href="#personajes" class="text-spn-light hover:text-spn-gold transition-colors py-2">Personajes</a>
+                    <a href="#impala" class="text-spn-light hover:text-spn-gold transition-colors py-2">El Impala '67</a>
+                    <a href="#lore" class="text-spn-light hover:text-spn-gold transition-colors py-2">Lore & Bestiario</a>
+                    <a href="#temporadas" class="text-spn-light hover:text-spn-gold transition-colors py-2">Temporadas</a>
+                </div>
+
+                
+        <!-- Reproductor de Audio Real -->
+<div class="hidden lg:flex items-center">
+    <button id="audioToggle" onclick="toggleAtmosphereAudio()" class="flex items-center space-x-2 px-3 py-1.5 rounded-full border border-spn-gold/40 bg-spn-dark hover:border-spn-gold text-xs text-spn-gold transition-all">
+        <i id="audioIcon" class="fas fa-music"></i>
+        <span id="audioText">Música de Ambiente</span>
+    </button>
+    <audio id="spnSong" src="carry.mp3" preload="auto"></audio>
+</div>
+
+    
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-spn-dark border-b border-spn-red/40 px-4 pt-2 pb-6 space-y-3 font-cinzel text-center">
+            <a href="#inicio" class="block py-2 text-spn-light hover:text-spn-gold border-b border-spn-black">Inicio</a>
+            <a href="#sinopsis" class="block py-2 text-spn-light hover:text-spn-gold border-b border-spn-black">Sinopsis</a>
+            <a href="#personajes" class="block py-2 text-spn-light hover:text-spn-gold border-b border-spn-black">Personajes</a>
+            <a href="#impala" class="block py-2 text-spn-light hover:text-spn-gold border-b border-spn-black">El Impala '67</a>
+            <a href="#lore" class="block py-2 text-spn-light hover:text-spn-gold border-b border-spn-black">Lore & Bestiario</a>
+            <a href="#temporadas" class="block py-2 text-spn-light hover:text-spn-gold">Temporadas</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/supernatural.jpg" alt="Supernatural Road" class="w-full h-full object-cover filter brightness-50 contrast-125">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <div class="absolute z-0 opacity-10 pointer-events-none">
+            <svg class="w-[600px] h-[600px] text-spn-gold animate-spin-slow" viewBox="0 0 100 100">
+                <path d="M50,5 L63,38 L98,38 L70,59 L81,95 L50,73 L19,95 L30,59 L2,38 L37,38 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6">
+            <p class="font-journal text-spn-gold text-lg md:text-2xl tracking-widest uppercase animate-pulse">
+                — El Diario de los Winchester —
+            </p>
+            <h1 class="font-cinzel text-5xl md:text-8xl font-black text-white tracking-widest red-glow">
+                SUPERNATURAL
+            </h1>
+            <p class="font-cinzel text-lg md:text-2xl text-spn-gold italic tracking-wide gold-glow max-w-3xl mx-auto">
+                "Saving people, hunting things, the family business."
+            </p>
+            <p class="text-spn-silver max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+                Acompaña a Sam y Dean Winchester a lo largo de 15 temporadas enfrentando demonios, ángeles, monstruos y al mismísimo destino en las carreteras de Estados Unidos.
+            </p>
+            
+            <div class="pt-6 flex flex-wrap justify-center gap-4">
+                <a href="#personajes" class="px-8 py-3 bg-spn-red hover:bg-spn-blood text-white font-cinzel font-bold tracking-wider rounded border border-red-500/50 shadow-lg hover:shadow-red-900/50 transition-all transform hover:-translate-y-1">
+                    Explorar Personajes
+                </a>
+                <a href="#impala" class="px-8 py-3 bg-spn-card hover:bg-spn-dark text-spn-gold border border-spn-gold/50 font-cinzel font-bold tracking-wider rounded hover:border-spn-gold transition-all transform hover:-translate-y-1">
+                    Conocer a "Baby"
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce text-spn-gold/60">
+            <a href="#sinopsis"><i class="fas fa-chevron-down text-2xl"></i></a>
+        </div>
+    </section>
+
+    <!-- SINOPSIS & HISTORIA -->
+    <section id="sinopsis" class="py-24 journal-bg relative border-t border-b border-spn-red/20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <div class="inline-block px-3 py-1 bg-spn-red/20 border border-spn-red text-spn-gold font-cinzel text-xs uppercase tracking-widest rounded">
+                        La Leyenda de los Winchester
+                    </div>
+                    <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-white tracking-wide">
+                        Dos Hermanos. Un Camino de Sangre y Fuego.
+                    </h2>
+                    <p class="text-spn-silver leading-relaxed text-sm md:text-base">
+                        Tras la misteriosa y trágica muerte de su madre Mary a manos de un demonio de ojos amarillos, John Winchester cría a sus hijos Sam y Dean como soldados en una guerra oculta contra lo sobrenatural.
+                    </p>
+                    <p class="text-spn-silver leading-relaxed text-sm md:text-base">
+                        A bordo de su Chevrolet Impala 1967, los hermanos cruzan el país investigando casos paranormales, enfrentándose a vampiros, hombres lobo, dioses paganos y encarando el Apocalipsis, redefiniendo el significado del libre albedrío y la familia.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 pt-4 text-center border-t border-spn-gold/20">
+                        <div class="p-3 bg-spn-dark/60 rounded border border-spn-gold/10">
+                            <span class="block font-cinzel text-2xl font-bold text-spn-gold">15</span>
+                            <span class="text-xs text-spn-silver font-mono">Temporadas</span>
+                        </div>
+                        <div class="p-3 bg-spn-dark/60 rounded border border-spn-gold/10">
+                            <span class="block font-cinzel text-2xl font-bold text-spn-gold">327</span>
+                            <span class="text-xs text-spn-silver font-mono">Episodios</span>
+                        </div>
+                        <div class="p-3 bg-spn-dark/60 rounded border border-spn-gold/10">
+                            <span class="block font-cinzel text-2xl font-bold text-spn-gold">2005</span>
+                            <span class="text-xs text-spn-silver font-mono">Año Estreno</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-spn-red to-spn-gold rounded-lg blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+                    <div class="relative bg-spn-card rounded-lg overflow-hidden border border-spn-gold/30">
+                        <img src="images/bestiario.jpg" alt="Winchester Journal" class="w-full h-80 object-cover filter brightness-75 group-hover:scale-105 transition duration-500">
+                        <div class="p-6 bg-spn-card">
+                            <p class="font-journal text-spn-gold text-lg mb-2">"Dad's Journal..."</p>
+                            <p class="text-xs text-spn-silver italic">
+                                "Si estás leyendo esto, significa que el mal no ha terminado. Recuerda: la sal, la plata y el hierro son tus mejores aliados."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PERSONAJES -->
+    <section id="personajes" class="py-24 bg-spn-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                <h2 class="font-cinzel text-4xl font-bold text-white red-glow">
+                    PERSONAJES PRINCIPALES
+                </h2>
+                <p class="text-spn-silver">
+                    Conoce a los cazadores, ángeles y demonios que marcaron el destino del universo.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-2 pt-4" id="filterContainer">
+                    <button onclick="filterCharacters('all', event)" class="filter-btn active px-4 py-2 text-xs font-cinzel rounded border border-spn-gold bg-spn-gold text-black font-bold transition-all">Todos</button>
+                    <button onclick="filterCharacters('hunter', event)" class="filter-btn px-4 py-2 text-xs font-cinzel rounded border border-spn-gold/40 hover:border-spn-gold text-spn-light transition-all">Cazadores</button>
+                    <button onclick="filterCharacters('angel-demon', event)" class="filter-btn px-4 py-2 text-xs font-cinzel rounded border border-spn-gold/40 hover:border-spn-gold text-spn-light transition-all">Ángeles / Demonios</button>
+                    <button onclick="filterCharacters('ally', event)" class="filter-btn px-4 py-2 text-xs font-cinzel rounded border border-spn-gold/40 hover:border-spn-gold text-spn-light transition-all">Aliados</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="charactersGrid">
+                
+                <!-- Dean Winchester -->
+                <div class="character-card hunter bg-spn-card rounded-xl overflow-hidden border border-spn-red/30 hover:border-spn-gold transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images/dean.jpg" alt="Dean Winchester" class="w-full h-full object-cover filter contrast-125">
+                            <span class="absolute top-3 right-3 px-3 py-1 bg-spn-red text-white text-xs font-cinzel font-bold rounded">Cazador</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-cinzel text-2xl font-bold text-white">Dean Winchester</h3>
+                            <p class="text-xs text-spn-gold font-mono uppercase tracking-wider">Hermano Mayor • Conductor del Impala</p>
+                            <p class="text-spn-silver text-sm leading-relaxed">
+                                Leal, sarcástico y protector obsesivo de su familia. Amante del pastel, el rock clásico y su Chevrolet Impala del '67.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <blockquote class="border-l-2 border-spn-gold pl-3 text-xs italic text-spn-silver font-journal mb-4">
+                            "Driver picks the music, shotgun shuts his cakehole."
+                        </blockquote>
+                        <button onclick="openModal('dean')" class="w-full py-2 bg-spn-dark hover:bg-spn-red text-spn-gold hover:text-white font-cinzel text-xs font-bold uppercase rounded border border-spn-gold/30 transition-all">
+                            Ver Expediente
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sam Winchester -->
+                <div class="character-card hunter bg-spn-card rounded-xl overflow-hidden border border-spn-red/30 hover:border-spn-gold transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images/sam.jpg" alt="Sam Winchester" class="w-full h-full object-cover filter contrast-125">
+                            <span class="absolute top-3 right-3 px-3 py-1 bg-spn-red text-white text-xs font-cinzel font-bold rounded">Cazador</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-cinzel text-2xl font-bold text-white">Sam Winchester</h3>
+                            <p class="text-xs text-spn-gold font-mono uppercase tracking-wider">Hermano Menor • Investigador</p>
+                            <p class="text-spn-silver text-sm leading-relaxed">
+                                Inteligente, empático y estudioso. Aunque intentó escapar de la vida de cazador para estudiar leyes en Stanford, el destino lo arrastró de vuelta al negocio familiar.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <blockquote class="border-l-2 border-spn-gold pl-3 text-xs italic text-spn-silver font-journal mb-4">
+                            "No matter how bad things get, we still have each other."
+                        </blockquote>
+                        <button onclick="openModal('sam')" class="w-full py-2 bg-spn-dark hover:bg-spn-red text-spn-gold hover:text-white font-cinzel text-xs font-bold uppercase rounded border border-spn-gold/30 transition-all">
+                            Ver Expediente
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Castiel -->
+                <div class="character-card angel-demon ally bg-spn-card rounded-xl overflow-hidden border border-spn-red/30 hover:border-spn-gold transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images/castiel.jpg" alt="Castiel" class="w-full h-full object-cover filter contrast-125">
+                            <span class="absolute top-3 right-3 px-3 py-1 bg-blue-900 text-blue-200 text-xs font-cinzel font-bold rounded">Ángel</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-cinzel text-2xl font-bold text-white">Castiel</h3>
+                            <p class="text-xs text-spn-gold font-mono uppercase tracking-wider">Ángel del Señor • Gabardina Icónica</p>
+                            <p class="text-spn-silver text-sm leading-relaxed">
+                                El ángel que rescató a Dean del Infierno. Inicialmente un soldado celestial estricto que aprende sobre la humanidad y la libertad al lado de los Winchester.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <blockquote class="border-l-2 border-spn-gold pl-3 text-xs italic text-spn-silver font-journal mb-4">
+                            "I'm the one who gripped you tight and raised you from perdition."
+                        </blockquote>
+                        <button onclick="openModal('castiel')" class="w-full py-2 bg-spn-dark hover:bg-spn-red text-spn-gold hover:text-white font-cinzel text-xs font-bold uppercase rounded border border-spn-gold/30 transition-all">
+                            Ver Expediente
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Crowley -->
+                <div class="character-card angel-demon bg-spn-card rounded-xl overflow-hidden border border-spn-red/30 hover:border-spn-gold transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images/crowly.jpg" alt="Crowley" class="w-full h-full object-cover filter contrast-125">
+                            <span class="absolute top-3 right-3 px-3 py-1 bg-red-950 text-red-400 text-xs font-cinzel font-bold rounded">Demonio / Rey</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-cinzel text-2xl font-bold text-white">Crowley</h3>
+                            <p class="text-xs text-spn-gold font-mono uppercase tracking-wider">Rey del Infierno • Demonio de Encrucijada</p>
+                            <p class="text-spn-silver text-sm leading-relaxed">
+                                Astuto, pragmático y con un sentido del humor afilado. Pasa de enemigo mortal a aliado recurrente cuando los intereses mutuos se alinean.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <blockquote class="border-l-2 border-spn-gold pl-3 text-xs italic text-spn-silver font-journal mb-4">
+                            "Hello, boys."
+                        </blockquote>
+                        <button onclick="openModal('crowley')" class="w-full py-2 bg-spn-dark hover:bg-spn-red text-spn-gold hover:text-white font-cinzel text-xs font-bold uppercase rounded border border-spn-gold/30 transition-all">
+                            Ver Expediente
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bobby Singer -->
+                <div class="character-card hunter ally bg-spn-card rounded-xl overflow-hidden border border-spn-red/30 hover:border-spn-gold transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images/bobby.jpg" alt="Bobby Singer" class="w-full h-full object-cover filter contrast-125">
+                            <span class="absolute top-3 right-3 px-3 py-1 bg-spn-gold text-black text-xs font-cinzel font-bold rounded">Mentor / Cazador</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-cinzel text-2xl font-bold text-white">Bobby Singer</h3>
+                            <p class="text-xs text-spn-gold font-mono uppercase tracking-wider">Figura Paterna • Experto en Lore</p>
+                            <p class="text-spn-silver text-sm leading-relaxed">
+                                El mentor y segundo padre de Sam y Dean. Su desguace de autos sirve como base de operaciones e investigación para cazadores de todo el país.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <blockquote class="border-l-2 border-spn-gold pl-3 text-xs italic text-spn-silver font-journal mb-4">
+                            "Family don't end with blood, boy."
+                        </blockquote>
+                        <button onclick="openModal('bobby')" class="w-full py-2 bg-spn-dark hover:bg-spn-red text-spn-gold hover:text-white font-cinzel text-xs font-bold uppercase rounded border border-spn-gold/30 transition-all">
+                            Ver Expediente
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Jack Kline -->
+                <div class="character-card ally bg-spn-card rounded-xl overflow-hidden border border-spn-red/30 hover:border-spn-gold transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="images/jack.jpg" alt="Jack Kline" class="w-full h-full object-cover filter contrast-125">
+                            <span class="absolute top-3 right-3 px-3 py-1 bg-purple-900 text-purple-200 text-xs font-cinzel font-bold rounded">Nephilim</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-cinzel text-2xl font-bold text-white">Jack Kline</h3>
+                            <p class="text-xs text-spn-gold font-mono uppercase tracking-wider">Hijo de Lucifer • Dios Renovador</p>
+                            <p class="text-spn-silver text-sm leading-relaxed">
+                                Un Nephilim de poder inmenso criado por Sam, Dean y Castiel. A pesar de su linaje oscuro, elige luchar por la bondad y proteger la creación.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <blockquote class="border-l-2 border-spn-gold pl-3 text-xs italic text-spn-silver font-journal mb-4">
+                            "I like nougat."
+                        </blockquote>
+                        <button onclick="openModal('jack')" class="w-full py-2 bg-spn-dark hover:bg-spn-red text-spn-gold hover:text-white font-cinzel text-xs font-bold uppercase rounded border border-spn-gold/30 transition-all">
+                            Ver Expediente
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN EL IMPALA '67 ("BABY") -->
+    <section id="impala" class="py-24 journal-bg relative border-t border-b border-spn-gold/20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <div class="inline-block px-3 py-1 bg-spn-gold/20 border border-spn-gold text-spn-gold font-cinzel text-xs uppercase tracking-widest rounded">
+                        El Tercer Hermano
+                    </div>
+                    <h2 class="font-cinzel text-4xl font-bold text-white tracking-wide">
+                        CHEVROLET IMPALA 1967 <br><span class="text-spn-gold gold-glow">"BABY"</span>
+                    </h2>
+                    <p class="text-spn-silver leading-relaxed">
+                        El objeto más importante de todo el universo. Salido de la línea de montaje de Janesville el 24 de abril de 1967, este sedan de 4 puertas en color negro azabache es más que un auto: es el único hogar constante que Sam y Dean han conocido.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 text-sm font-mono">
+                        <div class="p-4 bg-spn-dark rounded border border-spn-gold/20">
+                            <span class="text-spn-gold block font-cinzel font-bold">Motor</span>
+                            <span class="text-spn-silver">V8 327 Turbo-Thrift</span>
+                        </div>
+                        <div class="p-4 bg-spn-dark rounded border border-spn-gold/20">
+                            <span class="text-spn-gold block font-cinzel font-bold">Matrícula</span>
+                            <span class="text-spn-silver">KAZ 2Y5 (Kansas)</span>
+                        </div>
+                        <div class="p-4 bg-spn-dark rounded border border-spn-gold/20">
+                            <span class="text-spn-gold block font-cinzel font-bold">Armamento</span>
+                            <span class="text-spn-silver">Cajuela con Falso Fondo</span>
+                        </div>
+                        <div class="p-4 bg-spn-dark rounded border border-spn-gold/20">
+                            <span class="text-spn-gold block font-cinzel font-bold">Protección</span>
+                            <span class="text-spn-silver">Trampa de Demonio en Maletero</span>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-spn-silver italic font-journal border-l-2 border-spn-red pl-4">
+                        "En los momentos difíciles, se escondían en la parte trasera del Impala. Sus iniciales aún están grabadas en la madera: DW y SW."
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="relative rounded-xl overflow-hidden border border-spn-gold/40 shadow-2xl">
+                        <img id="impalaMainImg" src="images/impala.jpg" alt="Impala 67" class="w-full h-80 object-cover filter contrast-125 transition-all duration-500">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
+                            <p id="impalaCaption" class="text-xs font-mono text-spn-gold">Chevrolet Impala 1967 Hardtop - Color Tuxedo Black</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="changeImpalaImage('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80', 'Chevrolet Impala 1967 Hardtop - Color Tuxedo Black')" class="border border-spn-gold/40 rounded overflow-hidden hover:border-spn-gold focus:outline-none">
+                            <img src="images/impala2.jpg" class="w-full h-20 object-cover" alt="Vista Impala 1">
+                        </button>
+                        <button onclick="changeImpalaImage('https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=80', 'Detalles del Motor y Diseño Clásico')" class="border border-spn-gold/40 rounded overflow-hidden hover:border-spn-gold focus:outline-none">
+                            <img src="images/impala3.jpg" class="w-full h-20 object-cover" alt="Vista Impala 2">
+                        </button>
+                        <button onclick="changeImpalaImage('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80', 'En la Carretera Abierta - Asfalto y Rock')" class="border border-spn-gold/40 rounded overflow-hidden hover:border-spn-gold focus:outline-none">
+                            <img src="images/impala4.jpg" class="w-full h-20 object-cover" alt="Vista Impala 3">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LORE, MONSTRUOS Y SÍMBOLOS -->
+    <section id="lore" class="py-24 bg-spn-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="font-cinzel text-4xl font-bold text-white gold-glow">
+                    BESTIARIO & LORE MÍSTICO
+                </h2>
+                <p class="text-spn-silver">
+                    Símbolos de protección y las criaturas sobrenaturales registradas en el diario de caza.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Anti-Posesión -->
+                <div class="bg-spn-card p-6 rounded-xl border border-spn-gold/30 hover:border-spn-gold transition duration-300 text-center space-y-4">
+                    <div class="w-20 h-20 mx-auto text-spn-gold">
+                        <svg class="w-full h-full fill-current" viewBox="0 0 100 100">
+                            <path d="M50,5 L63,38 L98,38 L70,59 L81,95 L50,73 L19,95 L30,59 L2,38 L37,38 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-white">Símbolo Anti-Posesión</h3>
+                    <p class="text-xs text-spn-silver leading-relaxed">
+                        Tatuaje permanente que llevan Sam y Dean sobre el pecho. Impide que cualquier demonio tome control de sus cuerpos.
+                    </p>
+                </div>
+
+                <!-- Card 2: Trampa del Diablo -->
+                <div class="bg-spn-card p-6 rounded-xl border border-spn-gold/30 hover:border-spn-gold transition duration-300 text-center space-y-4">
+                    <div class="w-20 h-20 mx-auto text-spn-red">
+                        <svg class="w-full h-full fill-current" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <path d="M50,10 L90,80 L10,80 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-white">Trampa del Diablo</h3>
+                    <p class="text-xs text-spn-silver leading-relaxed">
+                        Símbolo pentagonal dibujado en el techo o suelo. Un demonio que entre en su perímetro pierde sus poderes y queda atrapado.
+                    </p>
+                </div>
+
+                <!-- Card 3: La Hoja de Primera / Colt -->
+                <div class="bg-spn-card p-6 rounded-xl border border-spn-gold/30 hover:border-spn-gold transition duration-300 text-center space-y-4">
+                    <div class="w-20 h-20 mx-auto text-spn-gold flex items-center justify-center">
+                        <i class="fas fa-cross text-5xl"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-white">El Colt & La Cuchilla Ángel</h3>
+                    <p class="text-xs text-spn-silver leading-relaxed">
+                        Armas legendarias capaces de matar a casi cualquier ser en la creación, desde demonios superiores hasta arcángeles.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Acordeón de Criaturas -->
+            <div class="mt-16 max-w-4xl mx-auto space-y-4">
+                <h3 class="font-cinzel text-2xl font-bold text-center text-white mb-6">Enemigos Frecuentes</h3>
+                
+                <div class="border border-spn-red/30 rounded bg-spn-dark overflow-hidden">
+                    <button onclick="toggleAccordion('acc1')" class="w-full p-4 text-left font-cinzel font-bold text-spn-gold flex justify-between items-center hover:bg-spn-card">
+                        <span><i class="fas fa-skull text-spn-red mr-3"></i> Demonios y Ojos Negros</span>
+                        <i id="acc1-icon" class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="acc1" class="hidden p-4 text-sm text-spn-silver border-t border-spn-red/20 bg-spn-card/50">
+                        Almas humanas corrompidas en el Infierno. Para destruirlos se requiere agua bendita, sal para contenerlos, el Colt, una daga de demonio o el exorcismo en latín: <em>"Exorcizamus te, omnis immundus spiritus..."</em>
+                    </div>
+                </div>
+
+                <div class="border border-spn-red/30 rounded bg-spn-dark overflow-hidden">
+                    <button onclick="toggleAccordion('acc2')" class="w-full p-4 text-left font-cinzel font-bold text-spn-gold flex justify-between items-center hover:bg-spn-card">
+                        <span><i class="fas fa-ghost text-spn-gold mr-3"></i> Fantasmas y Espíritus Vengativos</span>
+                        <i id="acc2-icon" class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="acc2" class="hidden p-4 text-sm text-spn-silver border-t border-spn-red/20 bg-spn-card/50">
+                        Almas atadas a la Tierra por trauma o pertenencias. Se dispersan temporalmente con escopetas cargadas de sal gema y se destruyen permanentemente salando y quemando sus restos humanos.
+                    </div>
+                </div>
+
+                <div class="border border-spn-red/30 rounded bg-spn-dark overflow-hidden">
+                    <button onclick="toggleAccordion('acc3')" class="w-full p-4 text-left font-cinzel font-bold text-spn-gold flex justify-between items-center hover:bg-spn-card">
+                        <span><i class="fas fa-moon text-spn-silver mr-3"></i> Cambiaformas y Vampiros</span>
+                        <i id="acc3-icon" class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="acc3" class="hidden p-4 text-sm text-spn-silver border-t border-spn-red/20 bg-spn-card/50">
+                        Monstruos de sangre. Los Cambiaformas son vulnerables a una estaca o bala de plata en el corazón. Los Vampiros en Supernatural no temen al sol, pero mueren al ser decapitados o debilitados con sangre de hombre muerto.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE TEMPORADAS / LÍNEA DE TIEMPO -->
+    <section id="temporadas" class="py-24 journal-bg relative border-t border-spn-red/20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="font-cinzel text-4xl font-bold text-white red-glow">
+                    ARCOS DE TEMPORADA
+                </h2>
+                <p class="text-spn-silver">
+                    Evolución de las grandes amenazas a lo largo de 15 años de historia.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 bg-spn-dark/90 rounded-xl border border-spn-gold/20 hover:border-spn-gold transition">
+                    <span class="text-xs font-mono text-spn-gold">Temporadas 1 - 5</span>
+                    <h3 class="font-cinzel text-xl font-bold text-white mt-1 mb-3">La Saga del Apocalipsis</h3>
+                    <p class="text-xs text-spn-silver leading-relaxed">
+                        Desde la búsqueda de Azazel hasta la liberación de Lucifer y la batalla predestinada entre Miguel y el Diablo. La etapa dorada creada por Eric Kripke.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-spn-dark/90 rounded-xl border border-spn-gold/20 hover:border-spn-gold transition">
+                    <span class="text-xs font-mono text-spn-gold">Temporadas 6 - 10</span>
+                    <h3 class="font-cinzel text-xl font-bold text-white mt-1 mb-3">Leviatanes y La Marca de Caín</h3>
+                    <p class="text-xs text-spn-silver leading-relaxed">
+                        El Infierno se reorganiza con Crowley, los monstruos primordiales escapan del Purgatorio y Dean carga con la maldición de la Marca de Caín.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-spn-dark/90 rounded-xl border border-spn-gold/20 hover:border-spn-gold transition">
+                    <span class="text-xs font-mono text-spn-gold">Temporadas 11 - 15</span>
+                    <h3 class="font-cinzel text-xl font-bold text-white mt-1 mb-3">La Oscuridad y Dios (Chuck)</h3>
+                    <p class="text-xs text-spn-silver leading-relaxed">
+                        La liberación de Amara (La Oscuridad), la llegada de Jack y el enfrentamiento final contra el propio escritor de sus destinos: Dios.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-spn-black border-t border-spn-gold/30 py-12 text-center relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 space-y-6">
+            <div class="w-16 h-16 mx-auto text-spn-gold/80">
+                <svg class="w-full h-full fill-current" viewBox="0 0 100 100">
+                    <path d="M50,5 L63,38 L98,38 L70,59 L81,95 L50,73 L19,95 L30,59 L2,38 L37,38 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <p class="font-cinzel text-2xl font-bold text-spn-gold tracking-widest gold-glow">
+                "Carry on my wayward son, there'll be peace when you are done."
+            </p>
+
+            <p class="text-xs text-spn-silver font-mono">
+                Página web informativa tributo a la serie Supernatural (The WB / The CW) • Creado para fans y cazadores.
+            </p>
+
+            <div class="flex justify-center space-x-6 text-spn-gold">
+                <a href="#inicio" class="hover:text-white transition"><i class="fas fa-chevron-up text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE EXPEDIENTE DE PERSONAJE -->
+    <div id="characterModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-spn-card border border-spn-gold rounded-xl max-w-2xl w-full p-6 relative space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-spn-silver hover:text-spn-gold text-2xl font-bold">&times;</button>
+            <div id="modalContent">
+                <!-- Se llena dinámicamente con JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Archivo JavaScript Personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>
